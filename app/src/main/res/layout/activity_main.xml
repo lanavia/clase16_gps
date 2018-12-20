@@ -48,10 +48,31 @@
                 android:layout_margin="3dp"/>
     </LinearLayout>
     <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:gravity="center">
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/txtAdress" android:layout_weight="1" android:hint="Ingresa Dirección"/>
+        <Button
+                android:text="Marca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/btnMarca"
+                android:textAlignment="center" android:lineSpacingExtra="10sp"/>
+    </LinearLayout>
+    <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/lyMapa">
-        <fragment android:layout_width="match_parent" android:layout_height="match_parent"
-        android:id="@+id/frgMapa"/>
+
+        <fragment android:id="@+id/frgMapa"
+                  android:name="com.google.android.gms.maps.SupportMapFragment"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+        />
+
     </LinearLayout>
 </LinearLayout>
