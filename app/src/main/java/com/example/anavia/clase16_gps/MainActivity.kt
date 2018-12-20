@@ -9,14 +9,18 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.widget.Toast
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.jar.Manifest
 
 
-class MainActivity : AppCompatActivity(), LocationListener {
-
+class MainActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback {
 
 
     var lm:LocationManager? =null
+    var mapa:GoogleMap?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +49,26 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 this)
         }
 
+//creamos el fragmento donde estará el mapa (fragmento especial para mapa supportMapFragment)
+        val fragmentoMapa = supportFragmentManager.findFragmentById(R.id.frgMapa) as SupportMapFragment
+        //al hacer la siguiente linea hay que implementar OnMapReadyCallback, debemos sobreescribir el método
+        fragmentoMapa.getMapAsync(this)
 
+    }
 
+//Funcion para saber donde estoy, para que el mapa no salga 0,0,0 en medio del atlantico frente a Africa
+    override fun onMapReady(p0: GoogleMap?) {
+        val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION,
+           android.Manifest.permission.ACCESS_FINE_LOCATION)
+        var granted = true
+        for (permiso in permissions){
+            granted = ActivityCompat.checkSelfPermission(this, permiso)== PackageManager.PERMISSION_GRANTED
+        }
+        if (!granted){
+            ActivityCompat.requestPermissions(this,permissions,2)
+        }else{
+            p0?.isMyLocationEnabled = true
+        }
 
     }
 
@@ -60,7 +82,23 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
                 if(grantResults.size>0 && granted){
                     lm?.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                        100,
+                        1000,
+                        1f,
+                        this)
+                }else{
+                    Toast.makeText(this," Permiso GPS requerido",
+                        Toast.LENGTH_LONG).show()
+                }
+            }
+            2->{
+                var granted=true
+                for(permiso in permissions){
+                    granted = granted and (ActivityCompat.checkSelfPermission(this, permiso)== PackageManager.PERMISSION_GRANTED)
+                }
+
+                if(grantResults.size>0 && granted){
+                    lm?.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                        1000,
                         1f,
                         this)
                 }else{
