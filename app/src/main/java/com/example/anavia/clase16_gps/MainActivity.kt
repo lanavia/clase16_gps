@@ -163,13 +163,13 @@ Use the isPresent() method to determine whether a Geocoder implementation exists
         longitud = location?.longitude.toString().toDouble()
         altitud =location?.altitude.toString().toDouble()
 
-        var geocoder = Geocoder(this)
+    /*    var geocoder = Geocoder(this)
         var lugares = geocoder.getFromLocation(latitud,longitud,1)
     if (lugares.size>0){
         lblDireccion.text = lugares.get(0).getAddressLine(0)
     }else{
         lblDireccion.text="Sin dirección"
-    }
+    }*/
 
     lblLatitud.text = latitud.toString()
         lblLongitud.text = longitud.toString()
