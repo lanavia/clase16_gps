@@ -9,7 +9,7 @@
 
     <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_margin="5dp">
         <TextView
                 android:text="Latitud"
@@ -23,7 +23,7 @@
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_margin="5dp">
         <TextView
                 android:text="Longitud"
@@ -36,14 +36,14 @@
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_margin="5dp">
         <TextView
                 android:text="Altitud"
-                android:layout_width="wrap_content"
+                android:layout_width="108dp"
                 android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="3dp"/>
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/lblAltitud" android:layout_weight="1"
                 android:layout_margin="3dp"/>
     </LinearLayout>
@@ -51,12 +51,9 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:gravity="center">
-        <EditText
+        <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/txtAdress" android:layout_weight="1" android:hint="Ingresa Dirección"/>
+                android:layout_height="36dp" android:id="@+id/lblDireccion" android:layout_weight="1"/>
         <Button
                 android:text="Marca"
                 android:layout_width="wrap_content"
